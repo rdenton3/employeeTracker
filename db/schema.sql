@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS dept;
+DROP TABLE IF EXISTS employeeRole;
+DROP TABLE IF EXISTS employeeInfo;
+
+CREATE TABLE parties (
+  id INTEGER AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(50) NOT NULL,
+  description TEXT
+);

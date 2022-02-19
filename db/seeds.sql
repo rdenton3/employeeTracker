@@ -11,8 +11,8 @@ VALUES
   ('Employee',45,2),
   ('Intern',30,3);
 
-INSERT INTO employeeInfo (first_name, last_name, manager, role_id, dept_id)
+INSERT INTO employeeInfo (first_name, last_name, manager_id, role_id, dept_id)
 VALUES
-  ('Dolly', 'Parton', 'Taylor Swift',2,1),
-  ('Taylor', 'Swift', 'None',1,2),
-  ('Johnny', 'Cash', 'Dolly Parton',3,4);
+  ('Dolly', 'Parton', 1,2,1),
+  ('Taylor', 'Swift', NULL,1,2),
+  ('Johnny', 'Cash',1,3,4);

@@ -119,13 +119,13 @@ async function init() {
     }
         // update employee role
         else if (response.choice1 == 'Update an employee role.') {
-            const sql = `SELECT first_name, last_name, role_id FROM employeeInfo`;
+            const sql = `SELECT id FROM employeeInfo`;
             const sql2 = `SELECT * FROM employeeRole`;
             employeeOptions = []
 
             let [employeesArr] = await db.promise().query(sql)
             employeesArr.forEach(employee => 
-                employeeOptions.push(employee.first_name + ' ' + employee.last_name))
+                employeeOptions.push(employee.id))
         
             let [rolesArr] = await db.promise().query(sql2)
             const roleOptions = rolesArr.map(({ title, id }) => ({
@@ -137,7 +137,7 @@ async function init() {
             let chooseEmployee = await inquirer.prompt([{
                 type: 'checkbox',
                 name: 'choice1',
-                message: 'Which employee would you like to update?',
+                message: 'Which employee ID would you like to update?',
                 choices: employeeOptions
             },
             {
@@ -147,12 +147,13 @@ async function init() {
                 choices: roleOptions
             }
         ])
+
         let params = []
-        params.push(chooseEmployee)
+        params.push(chooseEmployee.choice2,chooseEmployee.choice1)
         console.log(params)
-        const sql3 = `UPDATE employeerRole SET  VALUES(?,?,?,?,?)`;
+        const sql3 = `UPDATE employeerI SET role_id = ? WHERE id = ?`;
         db.query(sql, params, (err, rows) => {
-            console.log('Employee successfully added.')
+            console.log('Employee successfully updated.')
             init();
         });
 
